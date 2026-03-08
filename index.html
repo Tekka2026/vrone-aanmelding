@@ -556,7 +556,8 @@
       const el = document.getElementById(id);
       const errEl = document.getElementById(err);
       if (!el || !errEl) return;
-      const empty = !el.value.trim();
+      const val = el.value ?? '';
+      const empty = !val.trim() || val === '';
       const invalid = empty || (extra && extra(el));
       el.classList.toggle('invalid', invalid);
       if (extra && extra(el) && errEl) errEl.textContent = extraMsg;
@@ -593,8 +594,14 @@
       return;
     }
 
-    // Success - submit het formulier naar Formspree
+    // Alle velden geldig — verwijder novalidate en submit
+    form.removeAttribute('novalidate');
     form.submit();
+  });
+
+  // Blokkeer native form submit (Enter key etc.)
+  document.getElementById('form').addEventListener('submit', function(e) {
+    e.preventDefault();
   });
 
   // Clear error on input
