@@ -285,9 +285,21 @@
     transition: opacity 0.15s, transform 0.1s;
     align-self: flex-start;
   }
-  .btn:hover { opacity: 0.88; }
-  .btn:active { transform: scale(0.97); }
+  .btn:hover:not(:disabled) { opacity: 0.88; }
+  .btn:active:not(:disabled) { transform: scale(0.97); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
   .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+  /* ── Spinner ── */
+  .spinner {
+    width: 15px; height: 15px;
+    border: 2px solid rgba(17,20,31,0.25);
+    border-top-color: #11141F;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
   /* ── Success ── */
   .success-msg {
@@ -319,34 +331,34 @@
       <div class="grid c3">
         <div class="field">
           <label for="voornaam">Voornaam <span class="req">*</span></label>
-          <input type="text" id="voornaam" name="voornaam" required placeholder="Jan">
+          <input type="text" id="voornaam" name="voornaam" required placeholder="Jan" autocomplete="given-name">
           <span class="field-error" id="err-voornaam">⚠ Vul je voornaam in</span>
         </div>
         <div class="field">
           <label for="tussenv">Tussenvoegsel</label>
-          <input type="text" id="tussenv" name="tussenvoegsel" placeholder="van">
+          <input type="text" id="tussenv" name="tussenvoegsel" placeholder="van" autocomplete="additional-name">
         </div>
         <div class="field">
           <label for="achternaam">Achternaam <span class="req">*</span></label>
-          <input type="text" id="achternaam" name="achternaam" required placeholder="Jansen">
+          <input type="text" id="achternaam" name="achternaam" required placeholder="Jansen" autocomplete="family-name">
           <span class="field-error" id="err-achternaam">⚠ Vul je achternaam in</span>
         </div>
       </div>
       <div class="grid c2" style="margin-top:14px">
         <div class="field">
           <label for="roepnaam">Roepnaam <span class="req">*</span></label>
-          <input type="text" id="roepnaam" name="roepnaam" required placeholder="Jannie">
+          <input type="text" id="roepnaam" name="roepnaam" required placeholder="Jannie" autocomplete="nickname">
           <span class="field-error" id="err-roepnaam">⚠ Vul je roepnaam in</span>
         </div>
         <div class="field">
           <label for="geboortedatum">Geboortedatum <span class="req">*</span></label>
-          <input type="date" id="geboortedatum" name="geboortedatum" required>
+          <input type="date" id="geboortedatum" name="geboortedatum" required autocomplete="bday">
           <span class="field-error" id="err-geboortedatum">⚠ Vul je geboortedatum in</span>
         </div>
       </div>
       <div class="field" style="margin-top:14px">
         <label for="geslacht">Geslacht <span class="req">*</span></label>
-        <select id="geslacht" name="geslacht" required>
+        <select id="geslacht" name="geslacht" required autocomplete="sex">
           <option value="" disabled selected>Kies een optie</option>
           <option value="vrouw">Vrouw</option>
           <option value="man">Man</option>
@@ -360,34 +372,34 @@
       <div class="card-label">Adres &amp; Contact</div>
       <div class="field">
         <label for="adres">Adres <span class="req">*</span></label>
-        <input type="text" id="adres" name="adres" required placeholder="Dorpsstraat 1">
+        <input type="text" id="adres" name="adres" required placeholder="Dorpsstraat 1" autocomplete="street-address">
         <span class="field-error" id="err-adres">⚠ Vul je adres in</span>
       </div>
       <div class="grid c2" style="margin-top:14px">
         <div class="field">
           <label for="postcode">Postcode <span class="req">*</span></label>
-          <input type="text" id="postcode" name="postcode" required placeholder="1234 AB">
-          <span class="field-error" id="err-postcode">⚠ Vul je postcode in</span>
+          <input type="text" id="postcode" name="postcode" required placeholder="1234 AB" autocomplete="postal-code">
+          <span class="field-error" id="err-postcode">⚠ Vul een geldige postcode in (bijv. 1234 AB)</span>
         </div>
         <div class="field">
           <label for="woonplaats">Woonplaats <span class="req">*</span></label>
-          <input type="text" id="woonplaats" name="woonplaats" required placeholder="Sint Pancras">
+          <input type="text" id="woonplaats" name="woonplaats" required placeholder="Sint Pancras" autocomplete="address-level2">
           <span class="field-error" id="err-woonplaats">⚠ Vul je woonplaats in</span>
         </div>
       </div>
       <div class="field" style="margin-top:14px">
         <label for="telefoon">Telefoon <span class="req">*</span></label>
-        <input type="tel" id="telefoon" name="telefoon" required placeholder="072-1234567">
+        <input type="tel" id="telefoon" name="telefoon" required placeholder="072-1234567" autocomplete="tel">
         <span class="field-error" id="err-telefoon">⚠ Vul je telefoonnummer in</span>
       </div>
       <div class="field" style="margin-top:14px">
         <label for="email">E-mailadres <span class="req">*</span></label>
-        <input type="email" id="email" name="email" required placeholder="jan@voorbeeld.nl">
+        <input type="email" id="email" name="email" required placeholder="jan@voorbeeld.nl" autocomplete="email">
         <span class="field-error" id="err-email">⚠ Vul een geldig e-mailadres in</span>
       </div>
       <div class="field" id="ouder-field" style="margin-top:14px;display:none">
         <label for="ouder">Naam ouder/verzorger <span class="req">*</span></label>
-        <input type="text" id="ouder" name="ouder" placeholder="Voor- en achternaam">
+        <input type="text" id="ouder" name="ouder" placeholder="Voor- en achternaam" autocomplete="name">
         <span class="field-error" id="err-ouder">⚠ Vul de naam van de ouder/verzorger in</span>
       </div>
     </div>
@@ -401,6 +413,7 @@
         <strong id="file-label">Kies een bestand</strong>
         <span>jpg, jpeg of png · max 5 MB</span>
       </div>
+      <span class="field-error" id="err-pasfoto" style="margin-top:8px">⚠ Bestand is te groot (max 5 MB)</span>
       <p class="hint" style="margin-top:10px">Maak de foto met een effen achtergrond, bijv. een kastdeur. Een kopie insturen is niet nodig.</p>
     </div>
 
@@ -440,7 +453,7 @@
       <div class="grid c2">
         <div class="field">
           <label for="legtype">Type <span class="req">*</span></label>
-          <select id="legtype" name="legitimatietype" required>
+          <select id="legtype" name="legtype" required>
             <option value="" disabled selected>Kies type</option>
             <option value="paspoort">Paspoort</option>
             <option value="rijbewijs">Rijbewijs</option>
@@ -450,7 +463,7 @@
         </div>
         <div class="field">
           <label for="legnr">Nummer <span class="req">*</span></label>
-          <input type="text" id="legnr" name="legitimatienummer" required placeholder="NL123456789">
+          <input type="text" id="legnr" name="legnr" required placeholder="NL123456789">
           <span class="field-error" id="err-legnr">⚠ Vul het nummer in</span>
         </div>
       </div>
@@ -470,7 +483,6 @@
       <div class="notice">
         <p>Bij inschrijving vóór aanvang van het seizoen dient een volledige jaarcontributie te worden voldaan. Bij inschrijving gedurende het seizoen wordt een gedeelte in rekening gebracht, afhankelijk van de maand.</p>
         <p>Contributie kan niet contant worden betaald. De aanmelder verklaart akkoord te gaan met het contributie- en betalingsreglement en de geldende gedragsregels.</p>
-
       </div>
       <div style="display:flex;flex-direction:column;gap:16px;margin-top:22px">
         <label class="privacy-row">
@@ -479,8 +491,8 @@
         </label>
         <span class="field-error" id="err-privacy">⚠ Je moet akkoord gaan met de privacyverklaring</span>
         <button type="button" class="btn" id="submit-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
-          Aanmelding verzenden
+          <svg id="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+          <span id="btn-label">Aanmelding verzenden</span>
         </button>
         <div class="success-msg" id="success">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -496,7 +508,7 @@
 </div>
 
 <script>
-  // Stuur de hoogte door aan Framer zodat het Embed element meeschaalt
+  // ── Framer resize ──
   function resizeParent() {
     const height = document.documentElement.offsetHeight;
     window.parent.postMessage({ type: 'setHeight', height }, '*');
@@ -504,6 +516,8 @@
   resizeParent();
   new ResizeObserver(resizeParent).observe(document.documentElement);
   window.addEventListener('load', resizeParent);
+
+  // ── Ouder/verzorger tonen bij minderjarige ──
   document.getElementById('geboortedatum').addEventListener('change', function () {
     const dob = new Date(this.value);
     const today = new Date();
@@ -518,37 +532,55 @@
     if (!show) input.value = '';
   });
 
+  // ── Vorige vereniging conditional ──
   document.querySelectorAll('[name="andere_vereniging"]').forEach(r => {
     r.addEventListener('change', () => {
       document.getElementById('ver-extra').classList.toggle('show', r.value === 'ja' && r.checked);
     });
   });
 
+  // ── Pasfoto: naam tonen + grootte valideren ──
   document.getElementById('pasfoto').addEventListener('change', function () {
-    document.getElementById('file-label').textContent = this.files[0]?.name || 'Kies een bestand';
+    const file = this.files[0];
+    const errEl = document.getElementById('err-pasfoto');
+    if (file) {
+      document.getElementById('file-label').textContent = file.name;
+      const tooBig = file.size > 5 * 1024 * 1024;
+      errEl.classList.toggle('show', tooBig);
+      if (tooBig) this.value = ''; // reset zodat het bestand niet meegestuurd wordt
+    } else {
+      document.getElementById('file-label').textContent = 'Kies een bestand';
+      errEl.classList.remove('show');
+    }
   });
 
+  // ── Validatieregels ──
+  const checks = [
+    { id: 'voornaam',      err: 'err-voornaam' },
+    { id: 'achternaam',    err: 'err-achternaam' },
+    { id: 'roepnaam',      err: 'err-roepnaam' },
+    { id: 'geboortedatum', err: 'err-geboortedatum' },
+    { id: 'geslacht',      err: 'err-geslacht' },
+    { id: 'adres',         err: 'err-adres' },
+    {
+      id: 'postcode', err: 'err-postcode',
+      extra: el => el.value && !/^\d{4}\s?[A-Za-z]{2}$/.test(el.value.trim()),
+      extraMsg: '⚠ Vul een geldige postcode in (bijv. 1234 AB)'
+    },
+    { id: 'woonplaats',    err: 'err-woonplaats' },
+    { id: 'telefoon',      err: 'err-telefoon' },
+    {
+      id: 'email', err: 'err-email',
+      extra: el => el.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value),
+      extraMsg: '⚠ Vul een geldig e-mailadres in'
+    },
+    { id: 'legtype',       err: 'err-legtype' },
+    { id: 'legnr',         err: 'err-legnr' },
+  ];
+
+  // ── Submit ──
   document.getElementById('submit-btn').addEventListener('click', function () {
     const form = document.getElementById('form');
-
-    // Fields to validate: [inputId, errorId, customCheck]
-    const checks = [
-      { id: 'voornaam',   err: 'err-voornaam' },
-      { id: 'achternaam', err: 'err-achternaam' },
-      { id: 'roepnaam',   err: 'err-roepnaam' },
-      { id: 'geboortedatum', err: 'err-geboortedatum' },
-      { id: 'geslacht',   err: 'err-geslacht' },
-      { id: 'adres',      err: 'err-adres' },
-      { id: 'postcode',   err: 'err-postcode' },
-      { id: 'woonplaats', err: 'err-woonplaats' },
-      { id: 'telefoon',   err: 'err-telefoon' },
-      { id: 'email',      err: 'err-email',
-        extra: el => el.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value),
-        extraMsg: '⚠ Vul een geldig e-mailadres in' },
-      { id: 'legtype',    err: 'err-legtype' },
-      { id: 'legnr',      err: 'err-legnr' },
-    ];
-
     let valid = true;
     let firstError = null;
 
@@ -557,10 +589,10 @@
       const errEl = document.getElementById(err);
       if (!el || !errEl) return;
       const val = el.value ?? '';
-      const empty = !val.trim() || val === '';
+      const empty = !val.trim();
       const invalid = empty || (extra && extra(el));
       el.classList.toggle('invalid', invalid);
-      if (extra && extra(el) && errEl) errEl.textContent = extraMsg;
+      if (invalid && extra && extra(el) && extraMsg) errEl.textContent = extraMsg;
       errEl.classList.toggle('show', invalid);
       if (invalid && !firstError) firstError = el;
       if (invalid) valid = false;
@@ -572,7 +604,7 @@
     errRadio.classList.toggle('show', !radioChecked);
     if (!radioChecked) { valid = false; if (!firstError) firstError = errRadio; }
 
-    // Ouder/verzorger (if visible)
+    // Ouder/verzorger (indien zichtbaar)
     const ouderField = document.getElementById('ouder-field');
     if (ouderField.style.display !== 'none') {
       const ouder = document.getElementById('ouder');
@@ -594,28 +626,50 @@
       return;
     }
 
-    // Alle velden geldig — verwijder novalidate en submit
-    form.removeAttribute('novalidate');
-    form.submit();
+    // ── Alles geldig: laadtoestand tonen, dubbele submit blokkeren ──
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    document.getElementById('btn-icon').outerHTML = '<span class="spinner"></span>';
+    document.getElementById('btn-label').textContent = 'Verzenden…';
+
+    // Asynchroon verzenden via fetch zodat succesmelding getoond kan worden
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(res => {
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('success').classList.add('show');
+        resizeParent();
+      } else {
+        throw new Error('Serverfout');
+      }
+    })
+    .catch(() => {
+      // Herstel knop bij fout
+      btn.disabled = false;
+      document.querySelector('.spinner').outerHTML =
+        '<svg id="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>';
+      document.getElementById('btn-label').textContent = 'Aanmelding verzenden';
+      alert('Er is iets misgegaan. Probeer het opnieuw of neem contact op met de vereniging.');
+    });
   });
 
-  // Blokkeer native form submit (Enter key etc.)
-  document.getElementById('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-  });
+  // ── Blokkeer native submit (Enter key etc.) ──
+  document.getElementById('form').addEventListener('submit', e => e.preventDefault());
 
-  // Clear error on input
+  // ── Wis foutmelding zodra gebruiker een veld aanpast ──
+  // Gebruikt el.id zodat dit consistent is met de checks-array en de error-span IDs
   document.getElementById('form').querySelectorAll('input, select, textarea').forEach(el => {
-    el.addEventListener('input', () => {
+    const clear = () => {
       el.classList.remove('invalid');
-      const errEl = document.getElementById('err-' + el.name);
+      const errEl = document.getElementById('err-' + el.id);
       if (errEl) errEl.classList.remove('show');
-    });
-    el.addEventListener('change', () => {
-      el.classList.remove('invalid');
-      const errEl = document.getElementById('err-' + el.name);
-      if (errEl) errEl.classList.remove('show');
-    });
+    };
+    el.addEventListener('input', clear);
+    el.addEventListener('change', clear);
   });
 </script>
 </body>
