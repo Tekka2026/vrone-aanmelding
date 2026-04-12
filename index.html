@@ -18,18 +18,14 @@
     --text:        #11141F;
     --text-sub:    #3C3C3C;
     --muted:       #888;
-    --btn-from:    #1FE063;
-    --btn-to:      #059E3A;
-    --btn-text:    #ffffff;
+    --green:       #1FE063;
+    --green-dark:  #059E3A;
     --accent-dim:  rgba(31,224,99,0.15);
+    --red:         #d0341a;
     --radius:      10px;
   }
 
-  html, body {
-    scroll-behavior: smooth;
-    overflow: visible;
-    height: auto;
-  }
+  html, body { scroll-behavior: smooth; overflow: visible; height: auto; }
 
   body {
     font-family: 'Geist', sans-serif;
@@ -42,86 +38,46 @@
 
   .wrapper { max-width: 620px; margin: 0 auto; }
 
-  /* ── Header ── */
+  /* Header */
   .header { margin-bottom: 48px; }
-
   .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-sub);
-    margin-bottom: 14px;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-sub); margin-bottom: 14px;
   }
   .eyebrow::before {
-    content: '';
-    display: block;
-    width: 18px;
-    height: 2px;
-    background: var(--btn-to);
-    border-radius: 2px;
+    content: ''; display: block; width: 18px; height: 2px;
+    background: var(--green-dark); border-radius: 2px;
   }
-
   .header h1 {
-    font-size: clamp(30px, 6vw, 48px);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    color: var(--text);
-    margin-bottom: 12px;
+    font-size: clamp(30px, 6vw, 48px); font-weight: 800;
+    line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 12px;
   }
+  .header p { font-size: 15px; color: var(--muted); max-width: 420px; line-height: 1.7; }
 
-  .header p {
-    font-size: 15px;
-    color: var(--muted);
-    max-width: 420px;
-    line-height: 1.7;
-  }
-
-  /* ── Cards ── */
+  /* Cards */
   .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 10px;
-    transition: border-color 0.2s;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; margin-bottom: 10px;
   }
-  .card:focus-within { border-color: #d0d0d0; }
-
   .card-label {
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--text);
-    margin-bottom: 20px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
+    font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border);
   }
 
-  /* ── Grid ── */
+  /* Grid */
   .grid { display: grid; gap: 14px; }
   .c3 { grid-template-columns: 1fr 0.45fr 1fr; }
   .c2 { grid-template-columns: 1fr 1fr; }
-
   @media (max-width: 520px) {
     .c3, .c2 { grid-template-columns: 1fr; }
     .card { padding: 20px; }
   }
 
-  /* ── Fields ── */
+  /* Fields */
   .field { display: flex; flex-direction: column; gap: 5px; }
-
-  label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-sub);
-    letter-spacing: 0.01em;
-  }
-  label .req { color: var(--btn-to); margin-left: 2px; }
+  label { font-size: 12px; font-weight: 600; color: var(--text-sub); letter-spacing: 0.01em; }
+  label .req { color: var(--green-dark); margin-left: 2px; }
 
   input[type="text"],
   input[type="email"],
@@ -129,187 +85,110 @@
   input[type="date"],
   select,
   textarea {
-    width: 100%;
-    padding: 10px 13px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    font-family: 'Geist', sans-serif;
-    font-size: 14px;
-    color: var(--text);
+    width: 100%; padding: 10px 13px;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: var(--radius); font-family: 'Geist', sans-serif;
+    font-size: 14px; color: var(--text);
     transition: border-color 0.15s, box-shadow 0.15s;
-    -webkit-appearance: none;
-    appearance: none;
+    -webkit-appearance: none; appearance: none;
   }
-
   input::placeholder, textarea::placeholder { color: #bbb; }
-
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    opacity: 0.4; cursor: pointer;
-  }
-
+  input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0.4; cursor: pointer; }
   select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 36px;
-    cursor: pointer;
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; cursor: pointer;
   }
-
   input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--border-focus);
-    box-shadow: 0 0 0 3px rgba(60,60,60,0.08);
-    background: #fff;
+    outline: none; border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(60,60,60,0.08); background: #fff;
   }
-
   textarea { resize: vertical; min-height: 96px; }
 
-  /* ── Radio pills ── */
-  .radio-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+  /* Invalid state */
+  .field-input.invalid {
+    border-color: var(--red) !important;
+    box-shadow: 0 0 0 3px rgba(208,52,26,0.1) !important;
+  }
 
+  /* Error messages — hidden by default, shown via JS */
+  .field-error {
+    font-size: 12px; color: var(--red); margin-top: 2px;
+    display: none; /* JS adds style="display:flex" to show */
+    align-items: center; gap: 4px;
+  }
+
+  /* Hint */
+  .hint { font-size: 12px; color: #aaa; margin-top: 6px; line-height: 1.5; }
+
+  /* Radio pills */
+  .radio-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
   .radio-pill {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 8px 16px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    background: var(--surface2);
-    transition: border-color 0.15s, color 0.15s, background 0.15s;
+    display: flex; align-items: center; gap: 7px; padding: 8px 16px;
+    border: 1px solid var(--border); border-radius: 8px; cursor: pointer;
+    font-size: 13px; font-weight: 500; color: var(--muted);
+    background: var(--surface2); transition: border-color 0.15s, color 0.15s, background 0.15s;
     user-select: none;
   }
+  .radio-pill:has(input:checked) { border-color: var(--text); color: var(--text); background: #fff; }
+  .radio-pill input { width: 14px; height: 14px; accent-color: var(--green-dark); cursor: pointer; flex-shrink: 0; }
 
-  .radio-pill:has(input:checked) {
-    border-color: var(--text);
-    color: var(--text);
-    background: #fff;
-  }
-
-  .radio-pill input {
-    width: 14px; height: 14px;
-    accent-color: var(--btn-to);
-    cursor: pointer; flex-shrink: 0;
-  }
-
-  /* ── File upload ── */
+  /* File upload */
   .file-zone {
-    position: relative;
-    border: 1px dashed var(--border);
-    border-radius: var(--radius);
-    padding: 24px 16px;
-    text-align: center;
-    cursor: pointer;
-    background: var(--surface2);
-    transition: border-color 0.15s, background 0.15s;
+    position: relative; border: 1px dashed var(--border); border-radius: var(--radius);
+    padding: 24px 16px; text-align: center; cursor: pointer;
+    background: var(--surface2); transition: border-color 0.15s, background 0.15s;
   }
-  .file-zone:hover {
-    border-color: var(--btn-to);
-    background: var(--accent-dim);
-  }
-  .file-zone input[type="file"] {
-    position: absolute; inset: 0; opacity: 0;
-    cursor: pointer; width: 100%; height: 100%;
-  }
+  .file-zone:hover { border-color: var(--green-dark); background: var(--accent-dim); }
+  .file-zone input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
   .file-icon { font-size: 24px; margin-bottom: 8px; display: block; }
   .file-zone strong { display: block; font-size: 13px; color: var(--text-sub); margin-bottom: 3px; }
   .file-zone span { font-size: 12px; color: var(--muted); }
 
-  /* ── Hint ── */
-  .hint { font-size: 12px; color: #aaa; margin-top: 4px; line-height: 1.5; }
-
-  /* ── Validation errors ── */
-  .field-error {
-    font-size: 12px;
-    color: #d0341a;
-    margin-top: 4px;
-    display: none;
-    align-items: center;
-    gap: 4px;
-  }
-  .field-error.show { display: flex; }
-
-  input.invalid, select.invalid, textarea.invalid {
-    border-color: #d0341a !important;
-    box-shadow: 0 0 0 3px rgba(208,52,26,0.1) !important;
-  }
-
-  /* ── Conditional ── */
-  .conditional {
-    display: none; flex-direction: column; gap: 14px;
-    margin-top: 14px; padding-top: 14px;
-    border-top: 1px solid var(--border);
-  }
+  /* Conditional section */
+  .conditional { display: none; flex-direction: column; gap: 14px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); }
   .conditional.show { display: flex; }
 
-  /* ── Notice ── */
+  /* Notice */
   .notice {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--text);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    padding: 16px 18px;
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.8;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-left: 3px solid var(--text); border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 16px 18px; font-size: 13px; color: var(--muted); line-height: 1.8;
   }
   .notice p + p { margin-top: 8px; }
 
-  /* ── Privacy ── */
-  .privacy-row {
-    display: flex; align-items: flex-start; gap: 10px;
-    font-size: 13px; color: var(--muted); cursor: pointer;
-  }
-  .privacy-row input[type="checkbox"] {
-    width: 16px; height: 16px;
-    accent-color: var(--btn-to);
-    flex-shrink: 0; margin-top: 2px; cursor: pointer;
-  }
+  /* Privacy row */
+  .privacy-row { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--muted); cursor: pointer; }
+  .privacy-row input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--green-dark); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
   .privacy-row a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
 
-  /* ── Button ── */
+  /* Button */
   .btn {
     display: inline-flex; align-items: center; gap: 9px;
-    background: #1FE063;
-    color: #11141F;
-    font-family: 'Geist', sans-serif;
-    font-size: 16px; font-weight: 800;
-    letter-spacing: -0.01em;
-    padding: 16px 32px;
-    border: none; border-radius: 12px;
-    cursor: pointer;
+    background: var(--green); color: var(--text);
+    font-family: 'Geist', sans-serif; font-size: 16px; font-weight: 800;
+    letter-spacing: -0.01em; padding: 16px 32px;
+    border: none; border-radius: 12px; cursor: pointer;
     transition: opacity 0.15s, transform 0.1s;
-    align-self: flex-start;
   }
   .btn:hover:not(:disabled) { opacity: 0.88; }
   .btn:active:not(:disabled) { transform: scale(0.97); }
   .btn:disabled { opacity: 0.5; cursor: not-allowed; }
   .btn svg { width: 15px; height: 15px; flex-shrink: 0; }
-
-  /* ── Spinner ── */
-  .spinner {
-    width: 15px; height: 15px;
-    border: 2px solid rgba(17,20,31,0.25);
-    border-top-color: #11141F;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    flex-shrink: 0;
+  .btn .spinner {
+    width: 15px; height: 15px; border: 2px solid rgba(17,20,31,0.25);
+    border-top-color: var(--text); border-radius: 50%;
+    animation: spin 0.7s linear infinite; flex-shrink: 0; display: none;
   }
+  .btn.loading svg { display: none; }
+  .btn.loading .spinner { display: block; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* ── Success ── */
+  /* Success */
   .success-msg {
     display: none; align-items: center; gap: 10px;
-    background: var(--accent-dim);
-    border: 1px solid var(--btn-to);
-    border-radius: var(--radius);
-    padding: 14px 18px;
-    font-size: 13px; font-weight: 500;
-    color: var(--btn-to);
+    background: var(--accent-dim); border: 1px solid var(--green-dark);
+    border-radius: var(--radius); padding: 14px 18px;
+    font-size: 13px; font-weight: 500; color: var(--green-dark);
   }
   .success-msg.show { display: flex; }
 </style>
@@ -331,7 +210,7 @@
       <div class="grid c3">
         <div class="field">
           <label for="voornaam">Voornaam <span class="req">*</span></label>
-          <input type="text" id="voornaam" name="voornaam" required placeholder="Jan" autocomplete="given-name">
+          <input class="field-input" type="text" id="voornaam" name="voornaam" placeholder="Jan" autocomplete="given-name">
           <span class="field-error" id="err-voornaam">⚠ Vul je voornaam in</span>
         </div>
         <div class="field">
@@ -340,26 +219,26 @@
         </div>
         <div class="field">
           <label for="achternaam">Achternaam <span class="req">*</span></label>
-          <input type="text" id="achternaam" name="achternaam" required placeholder="Jansen" autocomplete="family-name">
+          <input class="field-input" type="text" id="achternaam" name="achternaam" placeholder="Jansen" autocomplete="family-name">
           <span class="field-error" id="err-achternaam">⚠ Vul je achternaam in</span>
         </div>
       </div>
       <div class="grid c2" style="margin-top:14px">
         <div class="field">
           <label for="roepnaam">Roepnaam <span class="req">*</span></label>
-          <input type="text" id="roepnaam" name="roepnaam" required placeholder="Jannie" autocomplete="nickname">
+          <input class="field-input" type="text" id="roepnaam" name="roepnaam" placeholder="Jannie" autocomplete="nickname">
           <span class="field-error" id="err-roepnaam">⚠ Vul je roepnaam in</span>
         </div>
         <div class="field">
           <label for="geboortedatum">Geboortedatum <span class="req">*</span></label>
-          <input type="date" id="geboortedatum" name="geboortedatum" required autocomplete="bday">
+          <input class="field-input" type="date" id="geboortedatum" name="geboortedatum" autocomplete="bday">
           <span class="field-error" id="err-geboortedatum">⚠ Vul je geboortedatum in</span>
         </div>
       </div>
       <div class="field" style="margin-top:14px">
         <label for="geslacht">Geslacht <span class="req">*</span></label>
-        <select id="geslacht" name="geslacht" required autocomplete="sex">
-          <option value="" disabled selected>Kies een optie</option>
+        <select class="field-input" id="geslacht" name="geslacht" autocomplete="sex">
+          <option value="">Kies een optie</option>
           <option value="vrouw">Vrouw</option>
           <option value="man">Man</option>
         </select>
@@ -367,39 +246,39 @@
       </div>
     </div>
 
-    <!-- Adres & contact -->
+    <!-- Adres & Contact -->
     <div class="card">
       <div class="card-label">Adres &amp; Contact</div>
       <div class="field">
         <label for="adres">Adres <span class="req">*</span></label>
-        <input type="text" id="adres" name="adres" required placeholder="Dorpsstraat 1" autocomplete="street-address">
+        <input class="field-input" type="text" id="adres" name="adres" placeholder="Dorpsstraat 1" autocomplete="street-address">
         <span class="field-error" id="err-adres">⚠ Vul je adres in</span>
       </div>
       <div class="grid c2" style="margin-top:14px">
         <div class="field">
           <label for="postcode">Postcode <span class="req">*</span></label>
-          <input type="text" id="postcode" name="postcode" required placeholder="1234 AB" autocomplete="postal-code">
-          <span class="field-error" id="err-postcode">⚠ Vul een geldige postcode in (bijv. 1234 AB)</span>
+          <input class="field-input" type="text" id="postcode" name="postcode" placeholder="1234 AB" autocomplete="postal-code">
+          <span class="field-error" id="err-postcode">⚠ Vul je postcode in</span>
         </div>
         <div class="field">
           <label for="woonplaats">Woonplaats <span class="req">*</span></label>
-          <input type="text" id="woonplaats" name="woonplaats" required placeholder="Sint Pancras" autocomplete="address-level2">
+          <input class="field-input" type="text" id="woonplaats" name="woonplaats" placeholder="Sint Pancras" autocomplete="address-level2">
           <span class="field-error" id="err-woonplaats">⚠ Vul je woonplaats in</span>
         </div>
       </div>
       <div class="field" style="margin-top:14px">
         <label for="telefoon">Telefoon <span class="req">*</span></label>
-        <input type="tel" id="telefoon" name="telefoon" required placeholder="072-1234567" autocomplete="tel">
+        <input class="field-input" type="tel" id="telefoon" name="telefoon" placeholder="072-1234567" autocomplete="tel">
         <span class="field-error" id="err-telefoon">⚠ Vul je telefoonnummer in</span>
       </div>
       <div class="field" style="margin-top:14px">
         <label for="email">E-mailadres <span class="req">*</span></label>
-        <input type="email" id="email" name="email" required placeholder="jan@voorbeeld.nl" autocomplete="email">
+        <input class="field-input" type="email" id="email" name="email" placeholder="jan@voorbeeld.nl" autocomplete="email">
         <span class="field-error" id="err-email">⚠ Vul een geldig e-mailadres in</span>
       </div>
-      <div class="field" id="ouder-field" style="margin-top:14px;display:none">
+      <div class="field" id="ouder-field" style="margin-top:14px; display:none">
         <label for="ouder">Naam ouder/verzorger <span class="req">*</span></label>
-        <input type="text" id="ouder" name="ouder" placeholder="Voor- en achternaam" autocomplete="name">
+        <input class="field-input" type="text" id="ouder" name="ouder" placeholder="Voor- en achternaam" autocomplete="name">
         <span class="field-error" id="err-ouder">⚠ Vul de naam van de ouder/verzorger in</span>
       </div>
     </div>
@@ -414,7 +293,7 @@
         <span>jpg, jpeg of png · max 5 MB</span>
       </div>
       <span class="field-error" id="err-pasfoto" style="margin-top:8px">⚠ Bestand is te groot (max 5 MB)</span>
-      <p class="hint" style="margin-top:10px">Maak de foto met een effen achtergrond, bijv. een kastdeur. Een kopie insturen is niet nodig.</p>
+      <p class="hint">Maak de foto met een effen achtergrond, bijv. een kastdeur. Een kopie insturen is niet nodig.</p>
     </div>
 
     <!-- Vorige vereniging -->
@@ -423,10 +302,10 @@
       <div class="field">
         <label>Ben je lid geweest bij een andere vereniging? <span class="req">*</span></label>
         <div class="radio-group">
-          <label class="radio-pill"><input type="radio" name="andere_vereniging" value="ja" id="ver_ja" required> Ja</label>
-          <label class="radio-pill"><input type="radio" name="andere_vereniging" value="nee" id="ver_nee"> Nee</label>
+          <label class="radio-pill"><input type="radio" name="andere_vereniging" value="ja"> Ja</label>
+          <label class="radio-pill"><input type="radio" name="andere_vereniging" value="nee"> Nee</label>
         </div>
-        <span class="field-error" id="err-andere_vereniging">⚠ Maak een keuze</span>
+        <span class="field-error" id="err-vereniging">⚠ Maak een keuze</span>
       </div>
       <div class="conditional" id="ver-extra">
         <div class="grid c2">
@@ -449,12 +328,12 @@
     <!-- Legitimatie -->
     <div class="card">
       <div class="card-label">Legitimatie</div>
-      <p class="hint" style="margin-bottom:16px">We hebben het nummer van een geldig identiteitsbewijs nodig (paspoort, rijbewijs of ID-kaart). Een kopie is niet nodig.</p>
+      <p class="hint" style="margin-top:0; margin-bottom:16px">We hebben het nummer van een geldig identiteitsbewijs nodig (paspoort, rijbewijs of ID-kaart). Een kopie is niet nodig.</p>
       <div class="grid c2">
         <div class="field">
           <label for="legtype">Type <span class="req">*</span></label>
-          <select id="legtype" name="legtype" required>
-            <option value="" disabled selected>Kies type</option>
+          <select class="field-input" id="legtype" name="legtype">
+            <option value="">Kies type</option>
             <option value="paspoort">Paspoort</option>
             <option value="rijbewijs">Rijbewijs</option>
             <option value="id">Identiteitskaart</option>
@@ -463,7 +342,7 @@
         </div>
         <div class="field">
           <label for="legnr">Nummer <span class="req">*</span></label>
-          <input type="text" id="legnr" name="legnr" required placeholder="NL123456789">
+          <input class="field-input" type="text" id="legnr" name="legnr" placeholder="NL123456789">
           <span class="field-error" id="err-legnr">⚠ Vul het nummer in</span>
         </div>
       </div>
@@ -484,193 +363,274 @@
         <p>Bij inschrijving vóór aanvang van het seizoen dient een volledige jaarcontributie te worden voldaan. Bij inschrijving gedurende het seizoen wordt een gedeelte in rekening gebracht, afhankelijk van de maand.</p>
         <p>Contributie kan niet contant worden betaald. De aanmelder verklaart akkoord te gaan met het contributie- en betalingsreglement en de geldende gedragsregels.</p>
       </div>
-      <div style="display:flex;flex-direction:column;gap:16px;margin-top:22px">
+      <div style="display:flex; flex-direction:column; gap:16px; margin-top:22px">
         <label class="privacy-row">
-          <input type="checkbox" id="privacy" name="privacy" required>
-          <span>Ik ga akkoord met de <a href="https://vrone.nl/informatie/privacy-statement/" target="_blank">privacyverklaring</a> van H.V. Vrone.<span class="req"> *</span></span>
+          <input type="checkbox" id="privacy" name="privacy">
+          <span>Ik ga akkoord met de <a href="https://vrone.nl/informatie/privacy-statement/" target="_blank" rel="noopener noreferrer">privacyverklaring</a> van H.V. Vrone.<span class="req"> *</span></span>
         </label>
         <span class="field-error" id="err-privacy">⚠ Je moet akkoord gaan met de privacyverklaring</span>
         <button type="button" class="btn" id="submit-btn">
-          <svg id="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+          <span class="spinner"></span>
           <span id="btn-label">Aanmelding verzenden</span>
         </button>
-        <div class="success-msg" id="success">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Aanmelding ontvangen! De ledenadministratie neemt snel contact met je op.
-        </div>
       </div>
     </div>
 
-    <!-- Honeypot: onzichtbaar voor mensen, bots vullen dit in en worden geblokkeerd -->
+    <!-- Honeypot -->
     <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
   </form>
+
+  <!-- Buiten het form zodat form.style.display='none' hem niet verbergt -->
+  <div class="success-msg" id="success" style="margin-top:16px">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    Aanmelding ontvangen! De ledenadministratie neemt snel contact met je op.
+  </div>
 </div>
 
 <script>
-  // ── Framer resize ──
+(function () {
+  'use strict';
+
+  // ── Framer iframe resize ──
   function resizeParent() {
-    const height = document.documentElement.offsetHeight;
-    window.parent.postMessage({ type: 'setHeight', height }, '*');
+    window.parent.postMessage({ type: 'setHeight', height: document.documentElement.offsetHeight }, '*');
   }
   resizeParent();
   new ResizeObserver(resizeParent).observe(document.documentElement);
   window.addEventListener('load', resizeParent);
 
-  // ── Ouder/verzorger tonen bij minderjarige ──
-  document.getElementById('geboortedatum').addEventListener('change', function () {
-    const dob = new Date(this.value);
-    const today = new Date();
-    let age = today.getFullYear() - dob.getFullYear();
-    const m = today.getMonth() - dob.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
-    const field = document.getElementById('ouder-field');
-    const input = document.getElementById('ouder');
-    const show = this.value && age < 18;
-    field.style.display = show ? 'flex' : 'none';
-    input.required = show;
-    if (!show) input.value = '';
-  });
+  // ── Helpers ──
+  function show(el) { el.style.display = 'flex'; }
+  function hide(el) { el.style.display = 'none'; }
+  function setInvalid(inputEl, errEl, msg) {
+    inputEl.classList.add('invalid');
+    errEl.textContent = msg;
+    show(errEl);
+  }
+  function setValid(inputEl, errEl) {
+    inputEl.classList.remove('invalid');
+    hide(errEl);
+  }
 
-  // ── Vorige vereniging conditional ──
-  document.querySelectorAll('[name="andere_vereniging"]').forEach(r => {
-    r.addEventListener('change', () => {
-      document.getElementById('ver-extra').classList.toggle('show', r.value === 'ja' && r.checked);
+  // ── Veld-definities ──
+  // Elke definitie: { inputId, errId, validate(el) -> null | foutmelding }
+  var fields = [
+    {
+      inputId: 'voornaam', errId: 'err-voornaam',
+      validate: function(el) { return el.value.trim() ? null : '⚠ Vul je voornaam in'; }
+    },
+    {
+      inputId: 'achternaam', errId: 'err-achternaam',
+      validate: function(el) { return el.value.trim() ? null : '⚠ Vul je achternaam in'; }
+    },
+    {
+      inputId: 'roepnaam', errId: 'err-roepnaam',
+      validate: function(el) { return el.value.trim() ? null : '⚠ Vul je roepnaam in'; }
+    },
+    {
+      inputId: 'geboortedatum', errId: 'err-geboortedatum',
+      validate: function(el) { return el.value ? null : '⚠ Vul je geboortedatum in'; }
+    },
+    {
+      inputId: 'geslacht', errId: 'err-geslacht',
+      validate: function(el) { return el.value ? null : '⚠ Kies een optie'; }
+    },
+    {
+      inputId: 'adres', errId: 'err-adres',
+      validate: function(el) { return el.value.trim() ? null : '⚠ Vul je adres in'; }
+    },
+    {
+      inputId: 'postcode', errId: 'err-postcode',
+      validate: function(el) {
+        var v = el.value.trim();
+        if (!v) return '⚠ Vul je postcode in';
+        if (!/^\d{4}\s?[A-Za-z]{2}$/.test(v)) return '⚠ Vul een geldige postcode in (bijv. 1234 AB)';
+        return null;
+      }
+    },
+    {
+      inputId: 'woonplaats', errId: 'err-woonplaats',
+      validate: function(el) { return el.value.trim() ? null : '⚠ Vul je woonplaats in'; }
+    },
+    {
+      inputId: 'telefoon', errId: 'err-telefoon',
+      validate: function(el) { return el.value.trim() ? null : '⚠ Vul je telefoonnummer in'; }
+    },
+    {
+      inputId: 'email', errId: 'err-email',
+      validate: function(el) {
+        var v = el.value.trim();
+        if (!v) return '⚠ Vul je e-mailadres in';
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return '⚠ Vul een geldig e-mailadres in';
+        return null;
+      }
+    },
+    {
+      inputId: 'legtype', errId: 'err-legtype',
+      validate: function(el) { return el.value ? null : '⚠ Kies een type'; }
+    },
+    {
+      inputId: 'legnr', errId: 'err-legnr',
+      validate: function(el) { return el.value.trim() ? null : '⚠ Vul het nummer in'; }
+    },
+  ];
+
+  // ── Valideer één veld, return true als geldig ──
+  function validateOne(field) {
+    var el = document.getElementById(field.inputId);
+    var errEl = document.getElementById(field.errId);
+    if (!el || !errEl) return true;
+    var msg = field.validate(el);
+    if (msg) { setInvalid(el, errEl, msg); return false; }
+    setValid(el, errEl); return true;
+  }
+
+  // ── Live validatie na eerste submitpoging ──
+  var attempted = false;
+  fields.forEach(function(field) {
+    var el = document.getElementById(field.inputId);
+    if (!el) return;
+    ['input', 'change'].forEach(function(evt) {
+      el.addEventListener(evt, function() { if (attempted) validateOne(field); });
     });
   });
 
-  // ── Pasfoto: naam tonen + grootte valideren ──
-  document.getElementById('pasfoto').addEventListener('change', function () {
-    const file = this.files[0];
-    const errEl = document.getElementById('err-pasfoto');
-    if (file) {
-      document.getElementById('file-label').textContent = file.name;
-      const tooBig = file.size > 5 * 1024 * 1024;
-      errEl.classList.toggle('show', tooBig);
-      if (tooBig) this.value = ''; // reset zodat het bestand niet meegestuurd wordt
-    } else {
-      document.getElementById('file-label').textContent = 'Kies een bestand';
-      errEl.classList.remove('show');
+  // ── Geboortedatum: ouder/verzorger tonen bij minderjarige ──
+  document.getElementById('geboortedatum').addEventListener('change', function() {
+    var dob = new Date(this.value);
+    var today = new Date();
+    var age = today.getFullYear() - dob.getFullYear();
+    var m = today.getMonth() - dob.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+    var field = document.getElementById('ouder-field');
+    var input = document.getElementById('ouder');
+    var isMinor = this.value && age < 18;
+    field.style.display = isMinor ? 'flex' : 'none';
+    if (!isMinor) input.value = '';
+  });
+
+  // ── Live validatie ouder/verzorger (apart omdat conditioneel) ──
+  document.getElementById('ouder').addEventListener('input', function() {
+    if (!attempted) return;
+    var errOuder = document.getElementById('err-ouder');
+    if (this.value.trim()) { setValid(this, errOuder); } else { setInvalid(this, errOuder, '⚠ Vul de naam van de ouder/verzorger in'); }
+  });
+
+  // ── Vorige vereniging: extra velden tonen ──
+  document.querySelectorAll('[name="andere_vereniging"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      var show = this.value === 'ja';
+      document.getElementById('ver-extra').classList.toggle('show', show);
+      if (attempted) {
+        hide(document.getElementById('err-vereniging'));
+      }
+    });
+  });
+
+  // ── Privacy: live feedback ──
+  document.getElementById('privacy').addEventListener('change', function() {
+    if (attempted) {
+      var errEl = document.getElementById('err-privacy');
+      this.checked ? hide(errEl) : show(errEl);
     }
   });
 
-  // ── Validatieregels ──
-  const checks = [
-    { id: 'voornaam',      err: 'err-voornaam' },
-    { id: 'achternaam',    err: 'err-achternaam' },
-    { id: 'roepnaam',      err: 'err-roepnaam' },
-    { id: 'geboortedatum', err: 'err-geboortedatum' },
-    { id: 'geslacht',      err: 'err-geslacht' },
-    { id: 'adres',         err: 'err-adres' },
-    {
-      id: 'postcode', err: 'err-postcode',
-      extra: el => el.value && !/^\d{4}\s?[A-Za-z]{2}$/.test(el.value.trim()),
-      extraMsg: '⚠ Vul een geldige postcode in (bijv. 1234 AB)'
-    },
-    { id: 'woonplaats',    err: 'err-woonplaats' },
-    { id: 'telefoon',      err: 'err-telefoon' },
-    {
-      id: 'email', err: 'err-email',
-      extra: el => el.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value),
-      extraMsg: '⚠ Vul een geldig e-mailadres in'
-    },
-    { id: 'legtype',       err: 'err-legtype' },
-    { id: 'legnr',         err: 'err-legnr' },
-  ];
+  // ── Pasfoto: bestandsnaam tonen + grootte check ──
+  document.getElementById('pasfoto').addEventListener('change', function() {
+    var file = this.files[0];
+    var errEl = document.getElementById('err-pasfoto');
+    if (!file) { document.getElementById('file-label').textContent = 'Kies een bestand'; hide(errEl); return; }
+    document.getElementById('file-label').textContent = file.name;
+    if (file.size > 5 * 1024 * 1024) { show(errEl); this.value = ''; document.getElementById('file-label').textContent = 'Kies een bestand'; }
+    else { hide(errEl); }
+  });
 
   // ── Submit ──
-  document.getElementById('submit-btn').addEventListener('click', function () {
-    const form = document.getElementById('form');
-    let valid = true;
-    let firstError = null;
+  var btn = document.getElementById('submit-btn');
+  document.getElementById('submit-btn').addEventListener('click', function() {
+    attempted = true;
+    var form = document.getElementById('form');
+    var valid = true;
+    var firstErrorEl = null;
 
-    checks.forEach(({ id, err, extra, extraMsg }) => {
-      const el = document.getElementById(id);
-      const errEl = document.getElementById(err);
-      if (!el || !errEl) return;
-      const val = el.value ?? '';
-      const empty = !val.trim();
-      const invalid = empty || (extra && extra(el));
-      el.classList.toggle('invalid', invalid);
-      if (invalid && extra && extra(el) && extraMsg) errEl.textContent = extraMsg;
-      errEl.classList.toggle('show', invalid);
-      if (invalid && !firstError) firstError = el;
-      if (invalid) valid = false;
+    // Valideer alle gewone velden
+    fields.forEach(function(field) {
+      var ok = validateOne(field);
+      if (!ok && !firstErrorEl) firstErrorEl = document.getElementById(field.inputId);
+      if (!ok) valid = false;
     });
 
-    // Radio: andere_vereniging
-    const radioChecked = document.querySelector('[name="andere_vereniging"]:checked');
-    const errRadio = document.getElementById('err-andere_vereniging');
-    errRadio.classList.toggle('show', !radioChecked);
-    if (!radioChecked) { valid = false; if (!firstError) firstError = errRadio; }
+    // Ouder/verzorger (alleen als zichtbaar)
+    var ouderField = document.getElementById('ouder-field');
+    if (ouderField.offsetParent !== null) {
+      var ouder = document.getElementById('ouder');
+      var errOuder = document.getElementById('err-ouder');
+      if (!ouder.value.trim()) {
+        setInvalid(ouder, errOuder, '⚠ Vul de naam van de ouder/verzorger in');
+        if (!firstErrorEl) firstErrorEl = ouder;
+        valid = false;
+      } else {
+        setValid(ouder, errOuder);
+      }
+    }
 
-    // Ouder/verzorger (indien zichtbaar)
-    const ouderField = document.getElementById('ouder-field');
-    if (ouderField.style.display !== 'none') {
-      const ouder = document.getElementById('ouder');
-      const errOuder = document.getElementById('err-ouder');
-      const invalid = !ouder.value.trim();
-      ouder.classList.toggle('invalid', invalid);
-      if (errOuder) errOuder.classList.toggle('show', invalid);
-      if (invalid) { valid = false; if (!firstError) firstError = ouder; }
+    // Radio: andere_vereniging
+    var radioChecked = document.querySelector('[name="andere_vereniging"]:checked');
+    var errVereniging = document.getElementById('err-vereniging');
+    if (!radioChecked) {
+      show(errVereniging);
+      if (!firstErrorEl) firstErrorEl = errVereniging;
+      valid = false;
+    } else {
+      hide(errVereniging);
     }
 
     // Privacy checkbox
-    const privacy = document.getElementById('privacy');
-    const errPrivacy = document.getElementById('err-privacy');
-    errPrivacy.classList.toggle('show', !privacy.checked);
-    if (!privacy.checked) { valid = false; if (!firstError) firstError = privacy; }
+    var privacy = document.getElementById('privacy');
+    var errPrivacy = document.getElementById('err-privacy');
+    if (!privacy.checked) {
+      show(errPrivacy);
+      if (!firstErrorEl) firstErrorEl = privacy;
+      valid = false;
+    } else {
+      hide(errPrivacy);
+    }
 
     if (!valid) {
-      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
 
-    // ── Alles geldig: laadtoestand tonen, dubbele submit blokkeren ──
-    const btn = document.getElementById('submit-btn');
+    // Versturen
     btn.disabled = true;
-    document.getElementById('btn-icon').outerHTML = '<span class="spinner"></span>';
+    btn.classList.add('loading');
     document.getElementById('btn-label').textContent = 'Verzenden…';
 
-    // Asynchroon verzenden via fetch zodat succesmelding getoond kan worden
     fetch(form.action, {
       method: 'POST',
       body: new FormData(form),
       headers: { 'Accept': 'application/json' }
     })
-    .then(res => {
-      if (res.ok) {
-        form.style.display = 'none';
-        document.getElementById('success').classList.add('show');
-        resizeParent();
-      } else {
-        throw new Error('Serverfout');
-      }
+    .then(function(res) {
+      if (!res.ok) throw new Error();
+      form.style.display = 'none';
+      document.getElementById('success').classList.add('show');
+      resizeParent();
     })
-    .catch(() => {
-      // Herstel knop bij fout
+    .catch(function() {
       btn.disabled = false;
-      document.querySelector('.spinner').outerHTML =
-        '<svg id="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>';
+      btn.classList.remove('loading');
       document.getElementById('btn-label').textContent = 'Aanmelding verzenden';
       alert('Er is iets misgegaan. Probeer het opnieuw of neem contact op met de vereniging.');
     });
   });
 
-  // ── Blokkeer native submit (Enter key etc.) ──
-  document.getElementById('form').addEventListener('submit', e => e.preventDefault());
+  // Blokkeer native form submit (Enter key etc.)
+  document.getElementById('form').addEventListener('submit', function(e) { e.preventDefault(); });
 
-  // ── Wis foutmelding zodra gebruiker een veld aanpast ──
-  // Gebruikt el.id zodat dit consistent is met de checks-array en de error-span IDs
-  document.getElementById('form').querySelectorAll('input, select, textarea').forEach(el => {
-    const clear = () => {
-      el.classList.remove('invalid');
-      const errEl = document.getElementById('err-' + el.id);
-      if (errEl) errEl.classList.remove('show');
-    };
-    el.addEventListener('input', clear);
-    el.addEventListener('change', clear);
-  });
+})();
 </script>
 </body>
 </html>
